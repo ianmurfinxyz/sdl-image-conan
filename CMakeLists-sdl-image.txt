@@ -1,0 +1,31 @@
+add_library(SDL_image STATIC
+	IMG.c
+	IMG_bmp.c
+	IMG_gif.c
+	IMG_jpg.c
+	IMG_lbm.c
+	IMG_pcx.c
+	IMG_png.c
+	IMG_pnm.c
+	IMG_svg.c
+	IMG_tga.c
+	IMG_tif.c
+	IMG_webp.c
+	IMG_xcf.c
+	IMG_xpm.c
+	IMG_xv.c
+	IMG_xxx.c
+)
+
+set_target_properties(SDL_image PROPERTIES DEBUG_POSTFIX d)
+
+target_compile_options(SDL_image PRIVATE
+	-DLOAD_BMP
+	-DLOAD_PNG
+	-DSDL_IMAGE_USE_COMMON_BACKEND
+)
+
+target_link_libraries(SDL_image
+	CONAN_PKG::libpng
+	CONAN_PKG::sdl
+)
