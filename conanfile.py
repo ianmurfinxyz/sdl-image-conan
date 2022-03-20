@@ -49,14 +49,14 @@ class SDLImageConan(ConanFile):
 		postfix = "d" if build_type == "Debug" else ""
 		
 		if self.settings.os == "Windows":
-			static = "-static" if self.options.shared else ""
+			static = "-static" if not self.options.shared else ""
 			self.cpp_info.libs = [
-				f"SDL2_image{static}{postfix}.lib"
+				f"SDL_image{static}{postfix}.lib"
 			]
 		elif self.settings.os == "Linux":
 			extension = "so" if self.options.shared else "a"
 			self.cpp_info.libs = [
-				f"SDL2_image{static}{postfix}.{extension}"
+				f"SDL_image{static}{postfix}.{extension}"
 			]
 		
 		self.cpp_info.includedirs = ['include']
